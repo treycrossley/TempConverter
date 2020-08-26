@@ -1,14 +1,14 @@
 //
-//  WorldTrotterTests.swift
-//  WorldTrotterTests
+//  TempConverterTests.swift
+//  TempConverterTests
 //
 //  Created by Admin on 8/18/20.
 //
 
 import XCTest
-@testable import WorldTrotter
+@testable import TempConverter
 
-class WorldTrotterTests: XCTestCase {
+class TempConverterTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
