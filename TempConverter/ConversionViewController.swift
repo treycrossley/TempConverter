@@ -39,9 +39,16 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
         let decimalSeparator = Locale.current.decimalSeparator ?? "."
         let existingTextHasDecimalSeparator = textField.text?.range(of: decimalSeparator)
         let replacementTextHasDecimalSeparator = string.range(of: decimalSeparator)
+        var replacementTextHasAlpha = false;
+        for char in string.unicodeScalars {
+            if CharacterSet.letters.contains(char) {
+                replacementTextHasAlpha = true
+                break
+            }
+        }
 
-            if existingTextHasDecimalSeparator != nil,
-                replacementTextHasDecimalSeparator != nil {
+            if (existingTextHasDecimalSeparator != nil &&
+                replacementTextHasDecimalSeparator != nil) || replacementTextHasAlpha {
                 return false
             }
         return true
