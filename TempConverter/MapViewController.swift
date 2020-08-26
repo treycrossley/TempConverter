@@ -11,8 +11,10 @@ import MapKit
 class MapViewController: UIViewController, MKMapViewDelegate {
     
     var mapView: MKMapView!
-    var segmentedControl: UISegmentedControl!
     var locationManager: CLLocationManager!
+    var segmentedControl: UISegmentedControl!
+    var pointOfInterestLabel: UILabel!
+    var pointOfInterestToggle: UISwitch!
     
     override func viewDidAppear(_ animated: Bool) {
         locationManager = CLLocationManager()
@@ -66,32 +68,35 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     func setupSwitchConstraints() {
-        let pointOfInterestLabel = UILabel();
+        setupSwitchLabel()
+        setupSwitchToggle()
+    }
+    
+    func setupSwitchLabel(){
+        pointOfInterestLabel = UILabel();
         view.addSubview(pointOfInterestLabel)
         pointOfInterestLabel.text = NSLocalizedString("Points of Interest", comment: "points of interest along the map")
         pointOfInterestLabel.textAlignment = .left
         pointOfInterestLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        let margins = view.layoutMarginsGuide
         NSLayoutConstraint.activate([
             pointOfInterestLabel.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 12),
-            pointOfInterestLabel.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
+            pointOfInterestLabel.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
         ])
         
-        
-        
-        let pointOfInterestToggle = UISwitch()
+    }
+    
+    func setupSwitchToggle(){
+        pointOfInterestToggle = UISwitch()
         pointOfInterestToggle.isOn = true
         pointOfInterestToggle.setOn(true, animated: true)
         pointOfInterestToggle.addTarget(self, action: #selector(pointOfInterestToggled(_:)), for: .valueChanged)
         pointOfInterestToggle.translatesAutoresizingMaskIntoConstraints = false;
         view.addSubview(pointOfInterestToggle)
-        
+    
         NSLayoutConstraint.activate([
             pointOfInterestToggle.leadingAnchor.constraint(equalTo: pointOfInterestLabel.trailingAnchor, constant: 5),
             pointOfInterestToggle.bottomAnchor.constraint(equalTo: pointOfInterestLabel.bottomAnchor, constant: 5)
         ])
-        
     }
     
     @objc func pointOfInterestToggled(_ switchControl: UISwitch){
