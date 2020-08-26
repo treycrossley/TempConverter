@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>&quot;GIVE US YOUR LOCATION PRETTY PLEASE - every big tech company&quot;</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>&quot;The lizard people need your location so they can track your movement&quot;</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>

@@ -8,10 +8,16 @@
 import UIKit
 import MapKit
 
-class MapViewController: UIViewController {
+class MapViewController: UIViewController, MKMapViewDelegate {
     
     var mapView: MKMapView!
     var segmentedControl: UISegmentedControl!
+    var locationManager: CLLocationManager!
+    
+    override func viewDidAppear(_ animated: Bool) {
+        locationManager = CLLocationManager()
+        locationManager.requestAlwaysAuthorization()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,10 +26,20 @@ class MapViewController: UIViewController {
     override func loadView() {
         super.loadView()
         mapView = MKMapView()
+        mapView.showsUserLocation = true
+        self.mapView.delegate = self
         view = mapView
         
         setupSegmentedConstraints()
         setupSwitchConstraints()
+    }
+    
+    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
+        let center = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
+        let spanLength = 0.01
+        let span = MKCoordinateSpan(latitudeDelta: spanLength, longitudeDelta: spanLength)
+        let region = MKCoordinateRegion(center: center, span: span)
+        mapView.setRegion(region, animated: true)
     }
     
     func setupSegmentedConstraints(){
