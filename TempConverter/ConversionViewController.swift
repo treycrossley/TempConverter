@@ -74,5 +74,15 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         updateCelsiusLabel()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.view.backgroundColor = UIColor.init(
+            red: CGFloat.random(in: 0.0 ... 1.0),
+            green: CGFloat.random(in: 0.0 ... 1.0),
+            blue: CGFloat.random(in: 0.0 ... 1.0),
+            alpha: CGFloat.random(in: 0.0 ... 1.0)
+        )
+    }
 }
 
